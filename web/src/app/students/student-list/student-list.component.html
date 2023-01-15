@@ -1,0 +1,26 @@
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="students">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Major</th>
+      <th>GPA</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students; let idx = index">
+      <td>{{ student.firstName }}</td>
+      <td>{{ student.lastName }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.major }}</td>
+      <td [ngClass]="getGPAClassOf(student.gpa)">{{ student.gpa }}</td>
+      <td>
+        <button type="button" class="btn btn-danger btn-sm"  (click)="onRemoveStudent(student, idx)">
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

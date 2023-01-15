@@ -1,22 +1,8 @@
 <h1 id="tableLabel">Students</h1>
 
-<p *ngIf="!students"><em>Loading...</em></p>
+<p *ngIf="message"><em>{{message}}</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="students">
-  <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Email</th>
-      <th>Major</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of students">
-      <td>{{ student.firstName }}</td>
-      <td>{{ student.lastName }}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.major }}</td>
-    </tr>
-  </tbody>
-</table>
+<app-student-list
+  [students]="students"
+  (removeStudent)="onRemoveStudent($event)"
+></app-student-list>

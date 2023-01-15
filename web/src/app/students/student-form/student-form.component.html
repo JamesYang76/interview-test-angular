@@ -1,0 +1,113 @@
+<div class="container">
+  <h1>Add Student</h1>
+  <div  
+    *ngIf="errorMsg"
+    class="error"  
+  >
+    {{ errorMsg }}
+  </div>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text" 
+        id="firstName"
+        formControlName="firstName"
+        class="form-control"
+      >
+      <span 
+        *ngIf="studentForm.get('firstName')!.hasError('required') && studentForm.get('firstName')!.touched" 
+        class="error"
+      >
+        This field is required!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        formControlName="lastName"
+        class="form-control" 
+      >
+      <span 
+        *ngIf="studentForm.get('lastName')!.hasError('required') && studentForm.get('lastName')!.touched" 
+        class="error"
+      >
+        This field is required!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+      >
+      <span 
+        *ngIf="studentForm.get('email')!.hasError('required') && studentForm.get('email')!.touched" 
+        class="error"
+      >
+        This field is required!
+      </span>
+      <span 
+        *ngIf="studentForm.get('email')!.hasError('email') && studentForm.get('email')!.touched" 
+        class="error"
+      >
+        This email format is invalid!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="major">Maior</label>
+      <input
+        type="text"
+        id="major"
+        formControlName="major"
+        class="form-control"
+      >
+      <span 
+        *ngIf="studentForm.get('major')!.hasError('required') && studentForm.get('major')!.touched" 
+        class="error"
+      >
+        This field is required!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="gpa">GPA</label>
+      <input
+        type="number" 
+        id="gpa"
+        formControlName="gpa"
+        class="form-control" 
+      >
+      <span 
+        *ngIf="studentForm.get('gpa')!.hasError('required') && studentForm.get('gpa')!.touched" 
+        class="error"
+      >
+        This field is required!
+      </span>
+      <span 
+        *ngIf="studentForm.get('gpa')!.hasError('min') && studentForm.get('gpa')!.touched" 
+        class="error"
+      >
+        The value should be grather than 0!
+      </span>
+      <span 
+        *ngIf="studentForm.get('gpa')!.hasError('max') && studentForm.get('gpa')!.touched" 
+        class="error"
+      >
+        The value should be smller than 100!
+      </span>
+    </div>
+    <div class="form-group">
+      <button
+        [disabled]="!studentForm.valid"  
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

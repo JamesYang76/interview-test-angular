@@ -39,5 +39,25 @@ namespace StudentApi.Controllers
 
             return reponse.Students;
         }
+
+      
+        [HttpPost]
+        public async Task<bool> Post([FromBody] Student student)
+        {
+
+            var reponse = await Mediator.Send(new AddStudentRequest(student));
+
+            return reponse.Result;
+        }
+
+        
+        [HttpDelete("{id}")]
+         public async Task<bool> Delete(string id)
+        {
+
+           var reponse = await Mediator.Send(new DeleteStudentRequest(id));
+
+           return reponse.Result;
+        }
     }
 }
